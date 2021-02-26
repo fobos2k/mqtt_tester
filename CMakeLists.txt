@@ -21,7 +21,7 @@ add_executable(${TARGET_NAME}
     ${PROJECT_SOURCES}/${PROJECT_MAIN_SOURCE})
 add_dependencies(${TARGET_NAME} ${MAINLIB_TARGET_NAME})
 
-includes_guard(GLOBAL)
+include_guard(GLOBAL)
 
 # Boost
 list(APPEND Boost_LIBRARIES_LIST filesystem system unit_test_framework)
@@ -42,10 +42,6 @@ endif()
 find_library(LIBISOLATOR libisolator.so HINTS $ENV{ISOLATOR_LIB_PATH})
 
 add_library(${MAINLIB_TARGET_NAME} OBJECT ${LIB_SOURCES})
-
-if ( LOCAL_APP )
-    include(includes.cmake/localtest.cmake)
-endif()
 
 target_include_directories(${MAINLIB_TARGET_NAME} PUBLIC
     ${PROJECT_INCLUDES}
