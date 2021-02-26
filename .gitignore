@@ -1,0 +1,16 @@
+*.log
+*~
+*.*~
+*.*#
+.#*
+
+sql/*-journal
+
+_temp/
+_build/
+obj/
+coverage/
+*.gcov
+*.gcno
+*.gcda
+reports/
