@@ -11,3 +11,14 @@ OnvifServiceB::~OnvifServiceB()
 {
     std::cout << "Destroyed " << get_client_id() << "..." << std::endl;
 }
+
+int OnvifServiceB::start()
+{
+    std::cout << "Started " << get_client_id() << "..." << std::endl;
+
+    m_pMqttClient->subscribe(nullptr, "command/service_b/#");
+
+    OnvifService::start();
+
+    return 0;
+}

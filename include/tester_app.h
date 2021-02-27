@@ -7,10 +7,11 @@ class TesterApp
     TesterApp();
     ~TesterApp();
 
+    int init();
     int start();
 
  private:
-    
+
 };
 
 

@@ -9,8 +9,10 @@ class OnvifServiceA : public OnvifService
     OnvifServiceA();
     ~OnvifServiceA();
 
+    virtual int start();
+
  private:
-        
+
 };
 
 

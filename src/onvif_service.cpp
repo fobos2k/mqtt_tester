@@ -6,7 +6,7 @@ OnvifService::OnvifService(std::string id)
 {
     m_ClientId = id;
 
-    m_pMqttClient.reset(new mosqpp::mosquittopp(id.c_str()));
+    m_pMqttClient.reset(new mqtt_client(id));
 }
 
 OnvifService::~OnvifService()
@@ -17,21 +17,13 @@ OnvifService::~OnvifService()
 int OnvifService::init()
 {
     std::cout << m_ClientId << ": Init..." << std::endl;
+    m_pMqttClient->init();
 
-    int rc = mosqpp::lib_init();
+    return 0;
+}
 
-    std::cout << m_ClientId << ": MQTT: Connect..." << std::endl;
-    rc = m_pMqttClient->connect_async(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE);
-
-    if ( rc != MOSQ_ERR_SUCCESS ) {
-        std::cout << m_ClientId << ": MQTT: Connection error... (" << rc << ")" << std::endl;
-        return rc;
-    }
-
-    std::cout << m_ClientId << ": MQTT: Loop start..." << std::endl;
-    rc = m_pMqttClient->loop_start();
-    if ( rc )
-        m_pMqttClient->reconnect_async();
-    
+int OnvifService::start()
+{
+    std::cout << "Started (base) " << get_client_id() << "..." << std::endl;
     return 0;
 }

@@ -4,13 +4,7 @@
 #include <memory>
 #include <string>
 
-#include "mosquittopp.h"
-
-// class mosquittop;
-
-#define MQTT_HOST           "localhost"
-#define MQTT_PORT           1883
-#define MQTT_KEEPALIVE      60
+#include "mqtt_client.h"
 
 class OnvifService
 {
@@ -21,12 +15,13 @@ class OnvifService
     std::string get_client_id() { return m_ClientId; }
 
     int init();
+    virtual int start();
 
  private:
     std::string m_ClientId = "mqtt_general_client";
 
-    std::unique_ptr<mosqpp::mosquittopp> m_pMqttClient;
-
+ protected:
+    std::unique_ptr<mqtt_client> m_pMqttClient;
 };
 
 

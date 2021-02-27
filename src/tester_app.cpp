@@ -7,7 +7,6 @@
 
 TesterApp::TesterApp()
 {
-
 }
 
 TesterApp::~TesterApp()
@@ -15,15 +14,23 @@ TesterApp::~TesterApp()
 
 }
 
+int TesterApp::init()
+{
+    return 0;
+}
+
 int TesterApp::start()
 {
     std::cout << "App started..." << std::endl;
 
-    std::unique_ptr<OnvifServiceA> service_a(new OnvifServiceA);
-    std::unique_ptr<OnvifServiceB> service_b(new OnvifServiceB);
+    std::unique_ptr<OnvifService> service_a(new OnvifServiceA);
+    std::unique_ptr<OnvifService> service_b(new OnvifServiceB);
 
-    service_a->init();
-    service_b->init();
+    if ( service_a->init() == 0 )
+        service_a->start();
     
+    if ( service_b->init() == 0 )
+        service_b->start();
+
     return 0;
 }
