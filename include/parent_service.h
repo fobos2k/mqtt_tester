@@ -1,16 +1,16 @@
-#ifndef _ONVIF_SERVICE_H_
-#define _ONVIF_SERVICE_H_
+#ifndef _PARENT_SERVICE_H_
+#define _PARENT_SERVICE_H_
 
 #include <memory>
 #include <string>
 
 #include "mqtt_client.h"
 
-class OnvifService
+class ParentService
 {
  public:
-    OnvifService(std::string id);
-    ~OnvifService();
+    ParentService(std::string id);
+    ~ParentService();
 
     std::string get_client_id() { return m_ClientId; }
 
@@ -25,4 +25,4 @@ class OnvifService
 };
 
 
-#endif  // _ONVIF_SERVICE_H_
+#endif  // _PARENT_SERVICE_H_

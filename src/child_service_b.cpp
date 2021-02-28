@@ -1,24 +1,24 @@
-#include "onvif_service_a.h"
+#include "child_service_b.h"
 
 #include <iostream>
 
-OnvifServiceA::OnvifServiceA() : OnvifService("ServiceA")
+ChildServiceB::ChildServiceB() : ParentService("ServiceB")
 {
     // std::cout << "Created " << get_client_id() << "..." << std::endl;
 }
 
-OnvifServiceA::~OnvifServiceA()
+ChildServiceB::~ChildServiceB()
 {
     // std::cout << "Destroyed " << get_client_id() << "..." << std::endl;
 }
 
-int OnvifServiceA::start()
+int ChildServiceB::start()
 {
     std::cout << "Started " << get_client_id() << "..." << std::endl;
 
-    m_pMqttClient->subscribe(nullptr, "command/service_a/#");
+    m_pMqttClient->subscribe(nullptr, "command/service_b/#");
 
-    OnvifService::start();
+    ParentService::start();
 
     return 0;
 }

@@ -6,8 +6,8 @@
 #include <string.h>
 
 #include "tester_app.h"
-#include "onvif_service_a.h"
-#include "onvif_service_b.h"
+#include "child_service_a.h"
+#include "child_service_b.h"
 
 static bool m_Quit = false;
 
@@ -48,8 +48,8 @@ int TesterApp::start()
 {
     std::cout << "App started..." << std::endl;
 
-    std::unique_ptr<OnvifService> service_a(new OnvifServiceA);
-    std::unique_ptr<OnvifService> service_b(new OnvifServiceB);
+    std::unique_ptr<ParentService> service_a(new ChildServiceA);
+    std::unique_ptr<ParentService> service_b(new ChildServiceB);
 
     if ( service_a->init() == 0 ) {
         service_a->start();
