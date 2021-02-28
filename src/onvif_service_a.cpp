@@ -4,12 +4,12 @@
 
 OnvifServiceA::OnvifServiceA() : OnvifService("ServiceA")
 {
-    std::cout << "Created " << get_client_id() << "..." << std::endl;
+    // std::cout << "Created " << get_client_id() << "..." << std::endl;
 }
 
 OnvifServiceA::~OnvifServiceA()
 {
-    std::cout << "Destroyed " << get_client_id() << "..." << std::endl;
+    // std::cout << "Destroyed " << get_client_id() << "..." << std::endl;
 }
 
 int OnvifServiceA::start()

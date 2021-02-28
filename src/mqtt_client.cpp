@@ -16,22 +16,40 @@ mqtt_client::~mqtt_client()
 
 }
 
+std::string mqtt_client::get_log_level(int level)
+{
+    switch(level) {
+    case (1<<0):
+        return "I";
+    case (1<<1):
+        return "N";
+    case (1<<2):
+        return "W";
+    case (1<<3):
+        return "E";
+    case (1<<4):
+        return "D";
+    case (1<<5):
+        return "S";
+    case (1<<6):
+        return "U";
+    case (1<<7):
+        return "B";
+    default:
+        return "";
+    }
+}
+
 int mqtt_client::init()
 {
-    int rc = mosqpp::lib_init();
-    if ( rc != MOSQ_ERR_SUCCESS ) {
-        std::cout << m_ClientId << ": MQTT: Lib_Init error" << std::endl;
-    }
-
     // std::cout << m_ClientId << ": MQTT: Connect..." << std::endl;
-    rc = connect_async(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE);
+    int rc = connect_async(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE);
 
     if ( rc != MOSQ_ERR_SUCCESS ) {
         std::cout << m_ClientId << ": MQTT: Connection error... (" << rc << ")" << std::endl;
         return rc;
     }
 
-    // std::cout << m_ClientId << ": MQTT: Loop start..." << std::endl;
     rc = loop_start();
     if ( rc )
         reconnect_async();
@@ -79,7 +97,7 @@ void mqtt_client::on_unsubscribe(int mid)
 
 void mqtt_client::on_log(int level, const char * str)
 {
-    std::cout << m_ClientId << ": log (" << level << "): " << std::string(str) << std::endl;
+    std::cout << m_ClientId << ": log (" << get_log_level(level) << "): " << std::string(str) << std::endl;
 }
 
 void mqtt_client::on_error()

@@ -16,6 +16,8 @@ class mqtt_client : public mosqpp::mosquittopp
  private:
     std::string m_ClientId = "mqtt_client_general";
 
+    std::string get_log_level(int level);
+
     void on_connect(int rc);    
     void on_disconnect(int rc);
 	void on_publish(int mid);

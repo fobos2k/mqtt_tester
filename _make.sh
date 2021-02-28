@@ -54,7 +54,7 @@ cmake_config()
     mkdir -p ${APP_BUILD_PATH}
 
     cd ${APP_BUILD_PATH}
-    cmake -D LOCAL_APP=YES ..
+    cmake ..
 }
 
 cmake_build()
